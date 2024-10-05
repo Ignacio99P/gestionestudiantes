@@ -1,36 +1,25 @@
 import React, { useState } from "react";
-import StudentForm from "estudianteFormulario";
-import StudentList from "estudianteLista";
-import Filter from "detalleEstudiante";
-import 'App.css';
+import EstudianteFormulario from "./componentes/estudianteFormulario";
+import EstudianteLista from "./componentes/estudianteLista";
+import DetalleEstudiante from "./componentes/detalleEstudiante";
+import Filtro from "./componentes/filtro";
 
+import "./App.css";  // Para agregar estilos globales si necesitas
 
 const App = () => {
-  // Estado para almacenar la lista de alumnos y el filtro
-  const [students, setStudents] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [estudiantes, setEstudiantes] = useState([]);
 
-  // Función para agregar un nuevo alumno
-  const addStudent = (student) => {
-    setStudents([...students, student]);
+  const agregarEstudiante = (nuevoEstudiante) => {
+    setEstudiantes([...estudiantes, nuevoEstudiante]);
   };
-
-  // Función para eliminar un alumno por DNI
-  const deleteStudent = (dni) => {
-    setStudents(students.filter(student => student.dni !== dni));
-  };
-
-  // Filtrar la lista de alumnos según el nombre
-  const filteredStudents = students.filter(student =>
-    student.name.toLowerCase().includes(filter.toLowerCase())
-  );
 
   return (
     <div className="app-container">
-      <h1>Gestión de Alumnos</h1>
-      <StudentForm onSubmit={addStudent} />
-      <Filter setFilter={setFilter} />
-      <StudentList students={filteredStudents} onDelete={deleteStudent} />
+      <h1>Gestión de Estudiantes</h1>
+      <EstudianteFormulario onSubmit={agregarEstudiante} />
+      <Filtro />
+      <EstudianteLista students={estudiantes} />
+      {estudiantes.length > 0 && <DetalleEstudiante student={estudiantes[0]} />}
     </div>
   );
 };

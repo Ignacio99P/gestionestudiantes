@@ -1,126 +1,14 @@
-/* General styles for the app */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f5f7fa;
-}
-
 .app-container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  max-width: 900px;
-  margin: 50px auto;
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header styles */
 h1 {
   text-align: center;
   color: #333;
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  font-weight: 600;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
-}
-
-/* Form and list container styles */
-form, .student-list, .filter-input {
-  margin-bottom: 20px;
-}
-
-/* Button styles */
-button {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #2980b9;
-}
-
-button:focus {
-  outline: none;
-}
-
-/* Form input styles */
-input {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-/* Filter input styles */
-.filter-input {
-  width: calc(100% - 20px);
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
-
-/* Student list styles */
-.student-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.student-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  margin-bottom: 10px;
-  background-color: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-.student-item:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.student-item button {
-  background-color: #e74c3c;
-}
-
-.student-item button:hover {
-  background-color: #c0392b;
-}
-
-/* Footer styles */
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-  .app-container {
-    padding: 15px;
-    margin: 20px auto;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  button {
-    font-size: 0.9rem;
-  }
+  font-family: 'Arial', sans-serif;
 }
