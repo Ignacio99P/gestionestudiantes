@@ -12,12 +12,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 20px; /* Espacio interior */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
-  max-width: 800px; /* Ancho máximo */
-  margin: 0 auto; /* Centrar el contenedor */
+/*  background-color: rgba(255, 255, 255, 0.9);  Fondo blanco semi-transparente 
+  border-radius: 10px;  Bordes redondeados
+  padding: 20px; /* Espacio interior 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); / Sombra para dar profundidad 
+  max-width: 800px;  Ancho máximo 
+  margin: 0 auto; /Centrar el contenedor */
 }
 
 .welcome-title {
@@ -26,7 +26,7 @@ body {
   padding: 20px 40px; /* Espacio interior */
   border-radius: 10px; /* Bordes redondeados */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
-  font-size: 40px; /* Tamaño de fuente más grande */
+  font-size: 60px; /* Tamaño de fuente más grande */
   text-align: center; /* Centrar el texto */
   margin-bottom: 20px; /* Espacio debajo del título */
 }
@@ -42,7 +42,7 @@ body {
   padding: 10px 15px; /* Espacio interior */
   border-radius: 5px; /* Bordes redondeados */
   cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
-  font-size: 30px; /* Tamaño de fuente */
+  font-size: 40px; /* Tamaño de fuente */
   transition: background-color 0.3s ease; /* Efecto de transición */
 }
 

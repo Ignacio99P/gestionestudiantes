@@ -1,8 +1,6 @@
-// src/AgregarEstudiante.jsx
-
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles/AgregarEstudiante.css'; // Asegúrate de que este archivo CSS esté presente
+import { useNavigate, Link } from 'react-router-dom';
+import './styles/AgregarEstudiante.css';
 
 const AgregarEstudiante = () => {
   const [nombre, setNombre] = useState('');
@@ -19,15 +17,13 @@ const AgregarEstudiante = () => {
       return;
     }
 
-    // Aquí puedes agregar la lógica para guardar el estudiante
     console.log('Estudiante agregado:', { nombre, edad, email, telefono });
-
-    // Redirigir a la lista de estudiantes
     navigate('/listar-estudiantes');
   };
 
   return (
     <div className="form-container">
+      <Link to="/" className="back-home-button">Volver a Inicio</Link> {/* Botón de volver a inicio */}
       <h2>Agregar Estudiante</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
