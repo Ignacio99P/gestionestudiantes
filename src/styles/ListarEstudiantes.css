@@ -1,0 +1,75 @@
+/* src/styles/ListarEstudiantes.css */
+
+.list-container {
+    width: 100%;
+    max-width: 800px; /* Ajustar el ancho máximo según sea necesario */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px; /* Aumentar el padding para un diseño más espacioso */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
+    transition: transform 0.3s; /* Transición para hover */
+    position: relative; /* Añadir esta propiedad para que el botón flote correctamente */
+  }
+  
+  .list-container:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  }
+  
+  h2 {
+    text-align: center; /* Centrar el título */
+    color: #6a11cb; /* Color llamativo */
+  }
+  
+  .estudiantes-table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapsar bordes */
+    margin-top: 20px; /* Espacio superior */
+  }
+  
+  .estudiantes-table th,
+  .estudiantes-table td {
+    border: 1px solid #ccc; /* Borde para celdas */
+    padding: 10px; /* Espaciado interno */
+    text-align: left; /* Alinear a la izquierda */
+  }
+  
+  .estudiantes-table th {
+    background-color: #6a11cb; /* Color de fondo para encabezados */
+    color: white; /* Color del texto */
+  }
+  
+  .back-button {
+    background-color: #007bff; /* Color azul */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Esquinas redondeadas */
+    margin-bottom: 20px; /* Margen inferior */
+    transition: background-color 0.3s; /* Transición suave */
+    position: absolute; /* Cambiar a posición absoluta */
+    top: 20px; /* Alinear a la parte superior */
+    right: 20px; /* Alinear a la derecha */
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }
+
+  /* src/styles/ListarEstudiantes.css */
+
+/* ... estilos existentes ... */
+
+.edit-form {
+    margin-top: 20px; /* Espacio superior */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo con un poco de transparencia */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+  
+  .edit-form h3 {
+    text-align: center; /* Centrar el título */
+    color: #6a11cb; /* Color llamativo */
+  }
+  

@@ -1,0 +1,76 @@
+/* App.css */
+
+body {
+  margin: 0; /* Eliminar márgenes por defecto */
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb); /* Fondo degradado */
+  min-height: 100vh; /* Altura mínima */
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 20px; /* Espacio interior */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  max-width: 800px; /* Ancho máximo */
+  margin: 0 auto; /* Centrar el contenedor */
+}
+
+.welcome-title {
+  background-color: #4a90e2; /* Fondo azul para el título */
+  color: #ffffff; /* Color de texto blanco */
+  padding: 20px 40px; /* Espacio interior */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+  font-size: 40px; /* Tamaño de fuente más grande */
+  text-align: center; /* Centrar el texto */
+  margin-bottom: 20px; /* Espacio debajo del título */
+}
+
+.navbar {
+  position: relative; /* Para posicionar el menú desplegable */
+}
+
+.dropdown-button {
+  background-color: #4338e6; /* Fondo para el botón */
+  color: white; /* Color de texto blanco */
+  border: none; /* Sin borde */
+  padding: 10px 15px; /* Espacio interior */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+  font-size: 30px; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.dropdown-button:hover {
+  background-color: #30b6df; /* Tono más oscuro al pasar el ratón */
+}
+
+.dropdown-menu {
+  position: absolute; /* Posicionar el menú en relación al botón */
+  background-color: rgb(19, 189, 231); /* Fondo blanco para el menú */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para el menú */
+  margin-top: 5px; /* Espacio encima del menú */
+  z-index: 1; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.dropdown-menu li {
+  list-style: none; /* Sin viñetas */
+}
+
+.dropdown-menu a {
+  display: block; /* Para que cada enlace ocupe toda la fila */
+  padding: 10px 15px; /* Espacio interior */
+  text-decoration: none; /* Sin subrayado */
+  color: #333; /* Color del texto */
+  transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f0f0; /* Tono más claro al pasar el ratón */
+}

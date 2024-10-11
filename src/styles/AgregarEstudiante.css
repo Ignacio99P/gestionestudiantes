@@ -1,0 +1,75 @@
+/* src/styles/AgregarEstudiante.css */
+
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px; /* Aumentar el padding para un diseño más espacioso */
+    border-radius: 10px; /* Esquinas redondeadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
+    transition: transform 0.3s; /* Transición para hover */
+  }
+  
+  .form-container:hover {
+    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
+  }
+  
+  h2 {
+    text-align: center; /* Centrar el título */
+    color: #6a11cb; /* Color llamativo */
+  }
+  
+  .form-group {
+    margin-bottom: 20px; /* Aumentar margen entre grupos */
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; /* Negrita para los labels */
+    color: #333; /* Color del texto de los labels */
+  }
+  
+  .estudiante-form input {
+    width: 100%;
+    padding: 12px; /* Espaciado interno más grande */
+    border: 2px solid #6a11cb; /* Borde color llamativo */
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: border 0.3s; /* Transición para el borde */
+  }
+  
+  .estudiante-form input:focus {
+    border-color: #2575fc; /* Cambiar el borde al hacer foco */
+    outline: none; /* Eliminar el contorno por defecto */
+  }
+  
+  .submit-button {
+    background-color: #6a11cb; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 12px 20px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Esquinas redondeadas */
+    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+  }
+  
+  .submit-button:hover {
+    background-color: #2575fc; /* Color de fondo al pasar el mouse */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
+  }
+  
+  .back-button {
+    background-color: #007bff; /* Color azul */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cambia el cursor al pasar el mouse */
+    border-radius: 5px; /* Esquinas redondeadas */
+    margin-bottom: 20px; /* Margen inferior */
+    transition: background-color 0.3s; /* Transición suave */
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }
+  

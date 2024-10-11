@@ -2,32 +2,57 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
   color: #535bf2;
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; /* Asegúrate de que ocupe toda la altura */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  flex-direction: column; /* Cambiar a columna para centrar el contenido */
+  background-image: url("./fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.container {
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.agregar-estudiante-container {
+  max-width: 800px; /* Ancho máximo del formulario */
+  width: 100%; /* Asegúrate de que el contenedor ocupe todo el ancho */
+  height: auto; /* Alto automático para adaptarse al contenido */
+  margin: 20px; /* Espaciado */
+  padding: 30px; /* Espacio interno */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para el contenedor */
 }
 
 h1 {
@@ -46,9 +71,11 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -57,12 +84,47 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #ffffff; /* Fondo claro para modo claro */
+    align-items: center;
   }
+
   a:hover {
     color: #747bff;
   }
+
   button {
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Botón claro para modo claro */
   }
+}
+/* src/index.css */
+
+/* Agregar estilos para el menú desplegable */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none; /* Ocultar por defecto */
+  position: absolute; /* Posición absoluta para despliegue */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo del menú desplegable */
+  min-width: 160px; /* Ancho mínimo del menú */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra */
+  z-index: 1; /* Asegurar que se superponga a otros elementos */
+  border-radius: 5px; /* Bordes redondeados */
+}
+
+.dropdown:hover .dropdown-content {
+  display: block; /* Mostrar al pasar el mouse */
+}
+
+.dropdown-content a {
+  color: #2575fc; /* Color de texto */
+  padding: 12px 16px; /* Espaciado interno */
+  text-decoration: none; /* Sin subrayado */
+  display: block; /* Mostrar como bloque */
+}
+
+.dropdown-content a:hover {
+  background-color: #6a11cb; /* Cambiar fondo al pasar el mouse */
+  color: white; /* Cambiar color de texto al pasar el mouse */
 }
