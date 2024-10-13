@@ -1,76 +1,22 @@
-/* src/styles/ListarEstudiantes.css */
-
 .list-container {
-  width: 100%;
-  max-width: 800px;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 40px; /* Aumentar el padding */
-  border-radius: 12px; /* Similar al de Agregar Estudiante */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
-  transition: transform 0.3s ease-in-out;
-  position: relative;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo del recuadro */
+  border: 1px solid #ccc; /* Borde del recuadro */
+  border-radius: 5px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
 }
 
-.list-container:hover {
-  transform: translateY(-10px); /* Más elevación para consistencia */
+.back-home-button {
+  display: inline-block;
+  margin-top: 10px; /* Espaciado superior */
+  padding: 10px 20px; /* Padding del botón */
+  background-color: #6a11cb; /* Color de fondo */
+  color: white; /* Color del texto */
+  text-decoration: none; /* Sin subrayado */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar por encima */
 }
 
-h2 {
-  text-align: center;
-  color: #6a11cb; /* Mantener el color */
-  font-size: 24px; /* Ajustar tamaño del texto */
-}
-
-.estudiantes-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 30px; /* Aumentar espacio superior */
-}
-
-.estudiantes-table th,
-.estudiantes-table td {
-  border: 1px solid #ccc;
-  padding: 15px; /* Aumentar el espaciado */
-  text-align: left;
-}
-
-.estudiantes-table th {
-  background-color: #6a11cb;
-  color: white;
-  font-size: 16px;
-}
-
-.estudiantes-table td {
-  background-color: #f9f9f9; /* Fondo sutil para celdas */
-}
-
-.back-button {
-  background-color: #ff6b6b; /* Color rojo más suave */
-  color: white;
-  border: none;
-  padding: 10px 20px; /* Ajustar espaciado */
-  cursor: pointer;
-  border-radius: 8px;
-  position: absolute;
-  top: 20px;
-  left: 20px; /* Alinear al lado izquierdo */
-  transition: background-color 0.3s ease-in-out;
-}
-
-.back-button:hover {
-  background-color: #e63946; /* Rojo más oscuro al pasar el mouse */
-}
-
-.edit-form {
-  margin-top: 20px;
-  padding: 30px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-}
-
-.edit-form h3 {
-  text-align: center;
-  color: #6a11cb;
-  font-size: 22px;
+.back-home-button:hover {
+  background-color: #5a0db5; /* Color de fondo en hover */
 }

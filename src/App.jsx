@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import AgregarEstudiante from "./AgregarEstudiante";
 import ListarEstudiantes from "./ListarEstudiantes";
-import Header from "./Header"; // Asegúrate de que la ruta sea correcta
+import Header from "./Header";
 import './styles/App.css';
 
 const AppContent = () => {
@@ -11,14 +11,21 @@ const AppContent = () => {
   const navigate = useNavigate();
 
   const handleMenuClick = (path) => {
-    setShowWelcome(false); // Ocultar el mensaje de bienvenida
+    setShowWelcome(false); // Ocultar el mensaje de bienvenida cuando navegamos
     setMenuOpen(false); // Cerrar el menú
     navigate(path); // Navegar a la nueva ruta
   };
 
+  const handleBackToHome = () => {
+    setShowWelcome(true); // Mostrar de nuevo el mensaje de bienvenida
+    setMenuOpen(false); // Cerrar el menú
+    navigate('/'); // Navegar de vuelta a la página principal
+  };
+
   return (
     <div className="app-container">
-      {showWelcome && (
+      <Header />
+      {showWelcome && ( // Mostrar solo si estamos en la página de inicio
         <>
           <h1 className="welcome-title">¡Bienvenido al Sistema de Gestión de Estudiantes de Instiform!</h1>
           <div className="navbar">
@@ -26,7 +33,7 @@ const AppContent = () => {
               className="dropdown-button" 
               onClick={() => setMenuOpen(!menuOpen)} // Alternar el estado del menú
             >
-              Menu
+              Menú
             </button>
             {menuOpen && ( // Solo mostrar el menú si está abierto
               <div className="dropdown-menu">
@@ -45,8 +52,9 @@ const AppContent = () => {
       )}
       
       <Routes>
-        <Route path="/agregar-estudiante" element={<AgregarEstudiante />} />
-        <Route path="/listar-estudiantes" element={<ListarEstudiantes />} />
+        <Route path="/agregar-estudiante" element={<AgregarEstudiante onBack={handleBackToHome} />} />
+        <Route path="/listar-estudiantes" element={<ListarEstudiantes onBack={handleBackToHome} />} />
+
       </Routes>
     </div>
   );
@@ -55,7 +63,6 @@ const AppContent = () => {
 const App = () => {
   return (
     <Router>
-      <Header />
       <AppContent />
     </Router>
   );

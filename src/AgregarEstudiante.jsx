@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles/AgregarEstudiante.css';
 
-const AgregarEstudiante = () => {
+const AgregarEstudiante = ({ onBack }) => {
   const [nombre, setNombre] = useState('');
   const [edad, setEdad] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,13 +17,11 @@ const AgregarEstudiante = () => {
     }
 
     console.log('Estudiante agregado:', { nombre, edad, email, telefono });
-    navigate('/listar-estudiantes');
   };
 
   return (
     <div className="form-container">
-      {/* Botón de volver a inicio */}
-      <Link to="/" className="back-home-button">Volver a Inicio</Link>
+      <Link to="/" className="back-home-button" onClick={onBack}>Volver a Inicio</Link>
 
       <h2>Agregar Estudiante</h2>
       {error && <p className="error">{error}</p>}
@@ -72,3 +69,4 @@ const AgregarEstudiante = () => {
 };
 
 export default AgregarEstudiante;
+
