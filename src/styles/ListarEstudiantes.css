@@ -1,75 +1,76 @@
 /* src/styles/ListarEstudiantes.css */
 
 .list-container {
-    width: 100%;
-    max-width: 800px; /* Ajustar el ancho máximo según sea necesario */
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px; /* Aumentar el padding para un diseño más espacioso */
-    border-radius: 10px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más prominente */
-    transition: transform 0.3s; /* Transición para hover */
-    position: relative; /* Añadir esta propiedad para que el botón flote correctamente */
-  }
-  
-  .list-container:hover {
-    transform: translateY(-5px); /* Efecto de elevación al pasar el mouse */
-  }
-  
-  h2 {
-    text-align: center; /* Centrar el título */
-    color: #6a11cb; /* Color llamativo */
-  }
-  
-  .estudiantes-table {
-    width: 100%; /* Ancho completo */
-    border-collapse: collapse; /* Colapsar bordes */
-    margin-top: 20px; /* Espacio superior */
-  }
-  
-  .estudiantes-table th,
-  .estudiantes-table td {
-    border: 1px solid #ccc; /* Borde para celdas */
-    padding: 10px; /* Espaciado interno */
-    text-align: left; /* Alinear a la izquierda */
-  }
-  
-  .estudiantes-table th {
-    background-color: #6a11cb; /* Color de fondo para encabezados */
-    color: white; /* Color del texto */
-  }
-  
-  .back-button {
-    background-color: #007bff; /* Color azul */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    padding: 10px 15px; /* Espaciado interno */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    border-radius: 5px; /* Esquinas redondeadas */
-    margin-bottom: 20px; /* Margen inferior */
-    transition: background-color 0.3s; /* Transición suave */
-    position: absolute; /* Cambiar a posición absoluta */
-    top: 20px; /* Alinear a la parte superior */
-    right: 20px; /* Alinear a la derecha */
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el mouse */
-  }
+  width: 100%;
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px; /* Aumentar el padding */
+  border-radius: 12px; /* Similar al de Agregar Estudiante */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
 
-  /* src/styles/ListarEstudiantes.css */
+.list-container:hover {
+  transform: translateY(-10px); /* Más elevación para consistencia */
+}
 
-/* ... estilos existentes ... */
+h2 {
+  text-align: center;
+  color: #6a11cb; /* Mantener el color */
+  font-size: 24px; /* Ajustar tamaño del texto */
+}
+
+.estudiantes-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px; /* Aumentar espacio superior */
+}
+
+.estudiantes-table th,
+.estudiantes-table td {
+  border: 1px solid #ccc;
+  padding: 15px; /* Aumentar el espaciado */
+  text-align: left;
+}
+
+.estudiantes-table th {
+  background-color: #6a11cb;
+  color: white;
+  font-size: 16px;
+}
+
+.estudiantes-table td {
+  background-color: #f9f9f9; /* Fondo sutil para celdas */
+}
+
+.back-button {
+  background-color: #ff6b6b; /* Color rojo más suave */
+  color: white;
+  border: none;
+  padding: 10px 20px; /* Ajustar espaciado */
+  cursor: pointer;
+  border-radius: 8px;
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Alinear al lado izquierdo */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #e63946; /* Rojo más oscuro al pasar el mouse */
+}
 
 .edit-form {
-    margin-top: 20px; /* Espacio superior */
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo con un poco de transparencia */
-    border-radius: 8px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  }
-  
-  .edit-form h3 {
-    text-align: center; /* Centrar el título */
-    color: #6a11cb; /* Color llamativo */
-  }
-  
+  margin-top: 20px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form h3 {
+  text-align: center;
+  color: #6a11cb;
+  font-size: 22px;
+}

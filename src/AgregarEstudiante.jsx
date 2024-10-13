@@ -23,7 +23,9 @@ const AgregarEstudiante = () => {
 
   return (
     <div className="form-container">
-      <Link to="/" className="back-home-button">Volver a Inicio</Link> {/* Botón de volver a inicio */}
+      {/* Botón de volver a inicio */}
+      <Link to="/" className="back-home-button">Volver a Inicio</Link>
+
       <h2>Agregar Estudiante</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>

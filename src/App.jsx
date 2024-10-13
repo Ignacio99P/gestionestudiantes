@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from "react-router-dom";
 import AgregarEstudiante from "./AgregarEstudiante";
 import ListarEstudiantes from "./ListarEstudiantes";
+import Header from "./Header"; // Asegúrate de que la ruta sea correcta
 import './styles/App.css';
 
 const AppContent = () => {
@@ -54,6 +55,7 @@ const AppContent = () => {
 const App = () => {
   return (
     <Router>
+      <Header />
       <AppContent />
     </Router>
   );
