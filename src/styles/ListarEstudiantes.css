@@ -1,22 +1,78 @@
-.list-container {
+.form-container {
+  width: 80%;
+  max-width: 1000px; /* Limita el ancho máximo */
+  background-color: rgba(255, 255, 255, 0.95); /* Fondo blanco ligeramente opaco */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px; /* Añadir margen superior para separar del header */
+}
+
+.estudiante-item {
+  width: 100%; /* Hace que cada estudiante use todo el ancho disponible */
+  border: 1px solid #ddd;
   padding: 20px;
-  background-color: #f9f9f9; /* Fondo del recuadro */
-  border: 1px solid #ccc; /* Borde del recuadro */
-  border-radius: 5px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: space-between; /* Alinea el contenido a lo largo del contenedor */
+  align-items: center;
+}
+
+.estudiante-item p {
+  font-size: 1.4rem; /* Tamaño de letra más pequeño */
+  color: #333;
+  margin: 0; /* Elimina los márgenes de los párrafos */
+}
+
+button {
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 10px; /* Espacio entre botones */
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #2575fc;
+  transform: translateY(-2px);
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones al final */
 }
 
 .back-home-button {
-  display: inline-block;
-  margin-top: 10px; /* Espaciado superior */
-  padding: 10px 20px; /* Padding del botón */
-  background-color: #6a11cb; /* Color de fondo */
-  color: white; /* Color del texto */
-  text-decoration: none; /* Sin subrayado */
-  border-radius: 5px; /* Bordes redondeados */
-  cursor: pointer; /* Cambia el cursor al pasar por encima */
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
 }
 
 .back-home-button:hover {
-  background-color: #5a0db5; /* Color de fondo en hover */
+  background-color: #ff1a1a;
+  transform: translateY(-3px);
+}
+
+h2 {
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
 }

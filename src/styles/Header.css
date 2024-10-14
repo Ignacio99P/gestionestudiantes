@@ -5,27 +5,27 @@
   position: fixed; /* Fijo en la parte superior */
   top: 0;
   left: 0;
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
-  display: flex; /* Usar flexbox para alinear elementos */
+  z-index: 1000; /* esta por encima de otros elementos */
+  display: flex; /* flexbox para alinear elementos */
   align-items: center; /* Centrar verticalmente */
   padding: 10px; /* Espaciado */
 }
 
 .header-content {
-  display: flex; /* Usar flexbox para alinear elementos */
+  display: flex; /* flexbox para alinear elementos */
   align-items: center; /* Centrar verticalmente */
   justify-content: space-between; /* Espacio entre el logo, título y botón */
   width: 100%; /* Ancho completo */
 }
 
 .logo {
-  height: 50px; /* Ajusta la altura del logo */
+  height: 90px; /* Ajusta la altura del logo */
 }
 
 .title {
   flex: 1; /* Permite que el título ocupe el espacio restante */
   text-align: center; /* Centrar el título */
-  font-size: 24px; /* Tamaño de fuente del título */
+  font-size: 35px; /* Tamaño de fuente del título */
   color: #6a11cb; /* Color del título */
 }
 
@@ -33,7 +33,7 @@
   background-color: #007bff; /* Color del botón */
   color: white; /* Color del texto */
   border: none; /* Sin borde */
-  padding: 10px 15px; /* Espaciado interno */
+  padding: 30px 20px; /* Espaciado interno */
   cursor: pointer; /* Cambiar el cursor al pasar */
   border-radius: 5px; /* Esquinas redondeadas */
   transition: background-color 0.3s; /* Transición suave */

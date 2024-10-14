@@ -1,58 +1,100 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './styles/ListarEstudiantes.css';
+import React, { useState, useEffect } from 'react';
+import './styles/ListarEstudiantes.css'; // Asegúrate de tener estilos
 
-const ListarEstudiantes = () => {
+const ListarEstudiantes = ({ onBack }) => {
+  // Datos de ejemplo (esto debería venir de una API o base de datos)
   const [estudiantes, setEstudiantes] = useState([
-    { id: 1, nombre: "Juan Pérez", edad: 20, email: "juan.perez@example.com", telefono: "1234567890" },
-    { id: 2, nombre: "Ana Gómez", edad: 22, email: "ana.gomez@example.com", telefono: "0987654321" },
+    { id: 1, nombre: 'Juan Pérez', edad: 22, email: 'juan@mail.com', telefono: '123456789' },
+    { id: 2, nombre: 'Ana García', edad: 21, email: 'ana@mail.com', telefono: '987654321' }
   ]);
 
-  const eliminarEstudiante = (id) => {
-    const nuevosEstudiantes = estudiantes.filter(estudiante => estudiante.id !== id);
-    setEstudiantes(nuevosEstudiantes);
+  // Estado para manejar los estudiantes editados
+  const [editingStudent, setEditingStudent] = useState(null);
+
+  // Manejar los cambios de los inputs cuando se está editando un estudiante
+  const handleInputChange = (e, id) => {
+    const { name, value } = e.target;
+    setEstudiantes((prevEstudiantes) =>
+      prevEstudiantes.map((est) =>
+        est.id === id ? { ...est, [name]: value } : est
+      )
+    );
   };
 
-  const modificarEstudiante = (id) => {
-    console.log(`Modificar estudiante con ID: ${id}`);
+  // Guardar los cambios del estudiante editado
+  const handleSave = (id) => {
+    console.log('Estudiante actualizado:', estudiantes.find((est) => est.id === id));
+    setEditingStudent(null); // Salir del modo de edición
+  };
+
+  // Eliminar estudiante
+  const handleDelete = (id) => {
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
+    if (confirmDelete) {
+      setEstudiantes((prevEstudiantes) =>
+        prevEstudiantes.filter((est) => est.id !== id)
+      );
+      console.log('Estudiante eliminado:', id);
+    }
   };
 
   return (
-    <div className="list-container">
-      <h2>Lista de Estudiantes</h2>
-      <Link to="/" className="back-home-button">Volver a Inicio</Link> {/* Coloca el botón aquí, debajo del título */}
+    <div className="form-container">
+      <h2>Listado de Alumnos</h2>
+      
+      {estudiantes.map((estudiante) => (
+        <div key={estudiante.id} className="estudiante-item">
+          {editingStudent === estudiante.id ? (
+            <div>
+              <label>Nombre:</label>
+              <input
+                type="text"
+                name="nombre"
+                value={estudiante.nombre}
+                onChange={(e) => handleInputChange(e, estudiante.id)}
+              />
 
-      {estudiantes.length === 0 ? (
-        <p>No hay estudiantes registrados.</p>
-      ) : (
-        <table className="estudiantes-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Edad</th>
-              <th>Email</th>
-              <th>Teléfono</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {estudiantes.map(estudiante => (
-              <tr key={estudiante.id}>
-                <td>{estudiante.id}</td>
-                <td>{estudiante.nombre}</td>
-                <td>{estudiante.edad}</td>
-                <td>{estudiante.email}</td>
-                <td>{estudiante.telefono}</td>
-                <td>
-                  <button onClick={() => modificarEstudiante(estudiante.id)} className="edit-button">Modificar</button>
-                  <button onClick={() => eliminarEstudiante(estudiante.id)} className="delete-button">Eliminar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+              <label>Edad:</label>
+              <input
+                type="number"
+                name="edad"
+                value={estudiante.edad}
+                onChange={(e) => handleInputChange(e, estudiante.id)}
+              />
+
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={estudiante.email}
+                onChange={(e) => handleInputChange(e, estudiante.id)}
+              />
+
+              <label>Teléfono:</label>
+              <input
+                type="tel"
+                name="telefono"
+                value={estudiante.telefono}
+                onChange={(e) => handleInputChange(e, estudiante.id)}
+              />
+
+              <button onClick={() => handleSave(estudiante.id)}>Guardar</button>
+            </div>
+          ) : (
+            <div>
+              <p><strong>Nombre:</strong> {estudiante.nombre}</p>
+              <p><strong>Edad:</strong> {estudiante.edad}</p>
+              <p><strong>Email:</strong> {estudiante.email}</p>
+              <p><strong>Teléfono:</strong> {estudiante.telefono}</p>
+
+              <button onClick={() => setEditingStudent(estudiante.id)}>Editar</button>
+              <button onClick={() => handleDelete(estudiante.id)} style={{ marginLeft: '10px', backgroundColor: 'red', color: 'white' }}>Eliminar</button>
+            </div>
+          )}
+        </div>
+      ))}
+
+      <button className="back-home-button" onClick={onBack}>Volver a Inicio</button>
     </div>
   );
 };
