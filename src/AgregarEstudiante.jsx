@@ -4,7 +4,7 @@ import './styles/AgregarEstudiante.css';
 
 const AgregarEstudiante = ({ onBack }) => {
   const [nombre, setNombre] = useState('');
-  const [edad, setEdad] = useState('');
+  const [dni, setDni] = useState('');
   const [email, setEmail] = useState('');
   const [telefono, setTelefono] = useState('');
   const [error, setError] = useState('');
@@ -36,11 +36,11 @@ const AgregarEstudiante = ({ onBack }) => {
           />
         </div>
         <div className="form-group">
-          <label>Edad:</label>
+          <label>DNI:</label>
           <input
             type="number"
-            value={edad}
-            onChange={(e) => setEdad(e.target.value)}
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
             required
           />
         </div>

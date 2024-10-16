@@ -7,35 +7,35 @@
   left: 0;
   z-index: 1000; /* esta por encima de otros elementos */
   display: flex; /* flexbox para alinear elementos */
-  align-items: center; /* Centrar verticalmente */
-  padding: 10px; /* Espaciado */
+  align-items: center; 
+  padding: 10px; 
 }
 
 .header-content {
-  display: flex; /* flexbox para alinear elementos */
-  align-items: center; /* Centrar verticalmente */
+  display: flex; 
+  align-items: center; 
   justify-content: space-between; /* Espacio entre el logo, título y botón */
-  width: 100%; /* Ancho completo */
+  width: 100%; 
 }
 
 .logo {
-  height: 90px; /* Ajusta la altura del logo */
+  height: 90px; 
 }
 
 .title {
   flex: 1; /* Permite que el título ocupe el espacio restante */
-  text-align: center; /* Centrar el título */
-  font-size: 35px; /* Tamaño de fuente del título */
-  color: #6a11cb; /* Color del título */
+  text-align: center; 
+  font-size: 35px; 
+  color: #6a11cb; 
 }
 
 .menu-button {
-  background-color: #007bff; /* Color del botón */
-  color: white; /* Color del texto */
-  border: none; /* Sin borde */
-  padding: 30px 20px; /* Espaciado interno */
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  padding: 30px 20px; 
   cursor: pointer; /* Cambiar el cursor al pasar */
-  border-radius: 5px; /* Esquinas redondeadas */
+  border-radius: 5px; 
   transition: background-color 0.3s; /* Transición suave */
 }
 

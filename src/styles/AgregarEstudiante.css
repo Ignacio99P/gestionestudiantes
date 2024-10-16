@@ -6,7 +6,7 @@
   border-radius: 12px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease-in-out;
-  position: relative; /* Importante para posicionar el botón de inicio */
+  position: relative; /* posiciona el botón de inicio */
 }
 
 .form-container:hover {
