@@ -1,106 +1,82 @@
 import React, { useState, useEffect } from 'react';
-import './styles/ListarEstudiantes.css'; // Asegúrate de tener estilos
+import './styles/ListarEstudiantes.css';
 
 const ListarEstudiantes = ({ onBack }) => {
-  const [estudiantes, setEstudiantes] = useState([]); // Array vacío inicialmente
-  const [editingStudentId, setEditingStudentId] = useState(null); // Estado para editar
-  const [formValues, setFormValues] = useState({}); // Almacena los valores del formulario
+  const [estudiantes, setEstudiantes] = useState([]);
+  const [editingStudent, setEditingStudent] = useState(null);
+  const [error, setError] = useState('');
 
-  // Función para formatear la fecha en DD/MM/YYYY
-  const formatFechaNacimiento = (fechaISO) => {
-    const fecha = new Date(fechaISO);
-    const dia = fecha.getDate().toString().padStart(2, '0');
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
-    const anio = fecha.getFullYear();
-    return `${dia}/${mes}/${anio}`;
-  };
-
-  // Cargar estudiantes desde la API al montar el componente
+  // Obtener estudiantes al cargar el componente
   useEffect(() => {
     const fetchEstudiantes = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/estudiantes');
-        if (!response.ok) {
-          throw new Error(`Error: ${response.statusText}`);
-        }
-        const data = await response.json();
-        setEstudiantes(data); // Guardar los estudiantes en el estado
+        const respuesta = await fetch('http://localhost:3000/api/estudiantes');
+        const data = await respuesta.json();
+        setEstudiantes(data);
       } catch (error) {
-        console.error('Error fetching students:', error);
-        alert('Hubo un problema al cargar los estudiantes.');
+        setError('Error al obtener los estudiantes');
       }
     };
 
     fetchEstudiantes();
   }, []);
 
-  // Manejar cambios de inputs al editar
-  const handleInputChange = (e) => {
+  // Manejar los cambios de los inputs al editar
+  const handleInputChange = (e, id) => {
     const { name, value } = e.target;
-
-    // Actualiza los valores del formulario
-    setFormValues((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+    setEstudiantes((prevEstudiantes) =>
+      prevEstudiantes.map((est) =>
+        est._id === id ? { ...est, [name]: value } : est
+      )
+    );
   };
 
-  // Al hacer clic en editar, inicializamos los valores del formulario
-  const handleEditClick = (estudiante) => {
-    setEditingStudentId(estudiante.id);
-    setFormValues({
-      dni: estudiante.dni,
-      nombre: estudiante.nombre,
-      apellido: estudiante.apellido,
-      fecha_nacimiento: estudiante.fecha_nacimiento.split('T')[0], // Mostrar solo la fecha
-      telefono: estudiante.telefono,
-      email: estudiante.email,
-    });
-    console.log('Editando estudiante:', estudiante); // Añadir logging
-  };
-
-  // Guardar cambios del estudiante editado
-  const handleSave = async () => {
-    console.log('Guardando cambios para estudiante:', formValues); // Añadir logging
-    if (!editingStudentId) return;
+  // Guardar los cambios del estudiante (actualiza en el backend)
+  const handleSave = async (id) => {
+    const estudianteActualizado = estudiantes.find((est) => est._id === id);
 
     try {
-      const response = await fetch(`http://localhost:3000/api/estudiantes/${formValues.dni}`, {
-        method: 'PUT', // Cambiado a PUT si actualizas todos los campos
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formValues), // Enviamos los nuevos valores
+      const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(estudianteActualizado), // Envía los datos actualizados
       });
 
-      if (!response.ok) {
-        throw new Error(`Error al actualizar el estudiante: ${response.statusText}`);
+      if (respuesta.ok) {
+        console.log('Estudiante actualizado:', estudianteActualizado);
+        setEditingStudent(null); // Salir del modo edición
+      } else {
+        const data = await respuesta.json();
+        setError(data.error || 'Error al actualizar el estudiante');
       }
-
-      const data = await response.json();
-      console.log('Estudiante actualizado en la base de datos:', data);
-
-      // Actualiza la lista de estudiantes en el estado local
-      setEstudiantes((prevEstudiantes) =>
-        prevEstudiantes.map((est) => (est.dni === formValues.dni ? { ...est, ...formValues } : est))
-      );
-
-      setEditingStudentId(null); // Salir del modo edición
-      alert('Estudiante actualizado correctamente');
     } catch (error) {
-      console.error('Error al guardar los cambios:', error);
-      alert('Hubo un problema al guardar los cambios.');
+      console.error('Error al conectar con el servidor:', error);
+      setError('Error al conectar con el servidor');
     }
   };
 
-  // Eliminar estudiante (solo en el estado local)
-  const handleDelete = (id) => {
+  // Eliminar estudiante y recargar la página
+  const handleDelete = async (id) => {
     const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este estudiante?');
+
     if (confirmDelete) {
-      setEstudiantes((prevEstudiantes) =>
-        prevEstudiantes.filter((est) => est.id !== id)
-      );
-      console.log('Estudiante eliminado:', id);
+      try {
+        const respuesta = await fetch(`http://localhost:3000/api/estudiantes/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (respuesta.ok) {
+          console.log(`Estudiante con ID ${id} eliminado.`);
+          window.location.reload(); // Recargar la página automáticamente
+        } else {
+          const data = await respuesta.json();
+          console.error('Error:', data.error);
+          alert(`Error: ${data.error}`);
+        }
+      } catch (error) {
+        console.error('Error al conectar con el servidor:', error);
+        alert('Error al conectar con el servidor.');
+      }
     }
   };
 
@@ -108,81 +84,68 @@ const ListarEstudiantes = ({ onBack }) => {
     <div className="form-container">
       <h2>Listado de Alumnos</h2>
 
-      {estudiantes.length > 0 ? (
-        estudiantes.map((estudiante) => (
-          <div key={estudiante.id} className="estudiante-item">
-            {editingStudentId === estudiante.id ? (
-              <div>
-                <label>DNI:</label>
-                <input
-                  type="text"
-                  name="dni"
-                  value={formValues.dni}
-                  readOnly // Hacer que el DNI no se pueda editar
-                />
-                <label>Nombre:</label>
-                <input
-                  type="text"
-                  name="nombre"
-                  value={formValues.nombre}
-                  onChange={handleInputChange}
-                />
-                <label>Apellido:</label>
-                <input
-                  type="text"
-                  name="apellido"
-                  value={formValues.apellido}
-                  onChange={handleInputChange}
-                />
-                <label>Fecha de Nacimiento:</label>
-                <input
-                  type="date"
-                  name="fecha_nacimiento"
-                  value={formValues.fecha_nacimiento} // Usa los valores del formulario
-                  onChange={handleInputChange}
-                />
-                <label>Teléfono:</label>
-                <input
-                  type="tel"
-                  name="telefono"
-                  value={formValues.telefono}
-                  onChange={handleInputChange}
-                />
-                <label>Email:</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formValues.email}
-                  onChange={handleInputChange}
-                />
+      {error && <p className="error">{error}</p>}
 
-                <button onClick={handleSave}>Guardar</button> {/* Asegúrate de que este botón llama a handleSave */}
-              </div>
-            ) : (
-              <div>
-                <p><strong>DNI:</strong> {estudiante.dni}</p>
-                <p><strong>Nombre:</strong> {estudiante.nombre}</p>
-                <p><strong>Apellido:</strong> {estudiante.apellido}</p>
-                <p><strong>Fecha de Nacimiento:</strong> {formatFechaNacimiento(estudiante.fecha_nacimiento)}</p>
-                <p><strong>Teléfono:</strong> {estudiante.telefono}</p>
-                <p><strong>Email:</strong> {estudiante.email}</p>
+      {estudiantes.map((estudiante) => (
+        <div key={estudiante._id} className="estudiante-item">
+          {editingStudent === estudiante._id ? (
+            <div>
+              <label>Nombre:</label>
+              <input
+                type="text"
+                name="nombre"
+                value={estudiante.nombre}
+                onChange={(e) => handleInputChange(e, estudiante._id)}
+              />
 
-                <button onClick={() => handleEditClick(estudiante)}>Editar</button>
-                <button
-                  onClick={() => handleDelete(estudiante.id)}
-                  style={{ marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
-                >
-                  Eliminar
-                </button>
-              </div>
-            )}
-          </div>
-        ))
-      ) : (
-        <p>No hay estudiantes disponibles.</p>
-      )}
+              <label>Apellido:</label>
+              <input
+                type="text"
+                name="apellido"
+                value={estudiante.apellido}
+                onChange={(e) => handleInputChange(e, estudiante._id)}
+              />
 
-      <button className="back-home-button" onClick={onBack}>Volver a Inicio</button>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={estudiante.email}
+                onChange={(e) => handleInputChange(e, estudiante._id)}
+              />
+
+              <label>Teléfono:</label>
+              <input
+                type="tel"
+                name="telefono"
+                value={estudiante.telefono}
+                onChange={(e) => handleInputChange(e, estudiante._id)}
+              />
+
+              <button onClick={() => handleSave(estudiante._id)}>Guardar</button>
+            </div>
+          ) : (
+            <div>
+              <p><strong>Nombre:</strong> {estudiante.nombre}</p>
+              <p><strong>Apellido:</strong> {estudiante.apellido}</p>
+              <p><strong>Email:</strong> {estudiante.email}</p>
+              <p><strong>Teléfono:</strong> {estudiante.telefono}</p>
+
+              <button onClick={() => setEditingStudent(estudiante._id)}>Editar</button>
+              <button
+                onClick={() => handleDelete(estudiante._id)}
+                style={{ marginLeft: '10px', backgroundColor: 'red', color: 'white' }}
+              >
+                Eliminar
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
+
+      <button className="back-home-button" onClick={onBack}>
+        Volver a Inicio
+      </button>
     </div>
   );
 };

@@ -3,81 +3,62 @@ import { Link } from 'react-router-dom';
 import './styles/AgregarEstudiante.css';
 
 const AgregarEstudiante = ({ onBack }) => {
-  const [dni, setDni] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [fecha_nacimiento, setFechaNacimiento] = useState('');
-  const [telefono, setTelefono] = useState('');
+  const [dni, setDni] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [email, setEmail] = useState('');
+  const [telefono, setTelefono] = useState('');
   const [error, setError] = useState('');
+  const [mensaje, setMensaje] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validación de campos
-    if (!dni || !nombre || !apellido || !fecha_nacimiento || !telefono || !email) {
+    if (!nombre || !apellido || !dni || !fechaNacimiento || !email || !telefono) {
       setError('Todos los campos son obligatorios');
       return;
     }
 
-    // Limpiar error si todo está bien
-    setError('');
-
-    const nuevoEstudiante = {
-      dni,
-      nombre,
-      apellido,
-      fecha_nacimiento,
-      telefono,
-      email,
-    };
-
     try {
-      const response = await fetch('http://localhost:3000/api/estudiantes', {
+      const respuesta = await fetch('http://localhost:3000/api/estudiantes', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(nuevoEstudiante), // Enviar el estudiante como JSON
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre,
+          apellido,
+          dni,
+          fecha_nacimiento: fechaNacimiento, // Asegúrate de que esta clave coincida con el modelo
+          email,
+          telefono,
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+      if (respuesta.ok) {
+        setMensaje('Estudiante agregado exitosamente');
+        setError('');
+        setNombre('');
+        setApellido('');
+        setDni('');
+        setFechaNacimiento('');
+        setEmail('');
+        setTelefono('');
+      } else {
+        const data = await respuesta.json();
+        setError(data.error);
       }
-
-      const data = await response.json();
-      console.log('Estudiante agregado:', data);
-      alert('Estudiante agregado con éxito.');
-
-      // Limpiar los campos después de agregar el estudiante
-      setDni('');
-      setNombre('');
-      setApellido('');
-      setFechaNacimiento('');
-      setTelefono('');
-      setEmail('');
     } catch (error) {
-      console.error('Error al agregar el estudiante:', error);
-      alert('Hubo un problema al agregar el estudiante. Inténtalo de nuevo.');
+      console.error('Error en la solicitud:', error);
+      setError('Error al conectar con el servidor');
     }
   };
 
   return (
     <div className="form-container">
       <Link to="/" className="back-home-button" onClick={onBack}>Volver a Inicio</Link>
-
       <h2>Agregar Estudiante</h2>
       {error && <p className="error">{error}</p>}
+      {mensaje && <p className="success">{mensaje}</p>}
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>DNI:</label>
-          <input
-            type="number"
-            value={dni}
-            onChange={(e) => setDni(e.target.value)}
-            required
-          />
-        </div>
         <div className="form-group">
           <label>Nombre:</label>
           <input
@@ -97,20 +78,20 @@ const AgregarEstudiante = ({ onBack }) => {
           />
         </div>
         <div className="form-group">
-          <label>Fecha De Nacimiento:</label>
+          <label>DNI:</label>
           <input
-            type="date"
-            value={fecha_nacimiento}
-            onChange={(e) => setFechaNacimiento(e.target.value)}
+            type="text" // Cambiado a texto para que funcione con cualquier formato
+            value={dni}
+            onChange={(e) => setDni(e.target.value)}
             required
           />
         </div>
         <div className="form-group">
-          <label>Teléfono:</label>
+          <label>Fecha de Nacimiento:</label>
           <input
-            type="tel"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
+            type="date"
+            value={fechaNacimiento}
+            onChange={(e) => setFechaNacimiento(e.target.value)}
             required
           />
         </div>
@@ -123,7 +104,15 @@ const AgregarEstudiante = ({ onBack }) => {
             required
           />
         </div>
-
+        <div className="form-group">
+          <label>Teléfono:</label>
+          <input
+            type="tel"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+            required
+          />
+        </div>
         <button type="submit" className="submit-button">Agregar</button>
       </form>
     </div>
